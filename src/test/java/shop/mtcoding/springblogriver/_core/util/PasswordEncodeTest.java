@@ -1,6 +1,5 @@
 package shop.mtcoding.springblogriver._core.util;
 
-import org.junit.jupiter.api.Test;
 import org.mindrot.jbcrypt.BCrypt;
 
 public class PasswordEncodeTest {

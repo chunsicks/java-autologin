@@ -4,15 +4,11 @@ package shop.mtcoding.springblogriver.controller;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper;
@@ -30,20 +26,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @Sql("classpath:db/teardown.sql")
 @AutoConfigureRestDocs(uriScheme = "http", uriHost = "localhost", uriPort = 8080)
-@ActiveProfiles("test")
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 public class UserControllerTest extends MyWithRestDoc {
 
-    @Autowired
-    protected RedisTemplate<String, String> redisTemplate;
-
     protected ObjectMapper om = new ObjectMapper();
     protected String accessToken;
-    protected String refreshToken;
 
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         User user = User.builder()
                 .id(1)
                 .username("ssar")
@@ -55,12 +46,8 @@ public class UserControllerTest extends MyWithRestDoc {
                 .build();
 
         accessToken = JwtUtil.createdAccessToken(user);
-        refreshToken = JwtUtil.createdRefreshToken(user);
 
-        accessToken = "Bearer "+accessToken;
-        refreshToken = "Bearer "+refreshToken;
-
-        redisTemplate.opsForValue().set(accessToken, refreshToken);
+        accessToken = "Bearer " + accessToken;
     }
 
     @Test
@@ -83,7 +70,7 @@ public class UserControllerTest extends MyWithRestDoc {
 
         // console
         String responseBody = resultActions.andReturn().getResponse().getContentAsString();
-        System.out.println("테스트 : "+responseBody);
+        System.out.println("테스트 : " + responseBody);
 
         // verify
         resultActions.andExpect(jsonPath("$.success").value("true"));
@@ -111,7 +98,7 @@ public class UserControllerTest extends MyWithRestDoc {
 
         // console
         String responseBody = resultActions.andReturn().getResponse().getContentAsString();
-        System.out.println("테스트 : "+responseBody);
+        System.out.println("테스트 : " + responseBody);
 
         // 헤더에서 Authorization 값을 추출
         String authorizationHeaderValue = resultActions.andReturn().getResponse().getHeader("Authorization");
@@ -146,7 +133,7 @@ public class UserControllerTest extends MyWithRestDoc {
         );
 
         String responseBody = resultActions.andReturn().getResponse().getContentAsString();
-        System.out.println("테스트 : "+responseBody);
+        System.out.println("테스트 : " + responseBody);
 
         resultActions.andExpect(jsonPath("$.success").value("true"));
         resultActions.andExpect(jsonPath("$.response").isEmpty());
@@ -174,7 +161,7 @@ public class UserControllerTest extends MyWithRestDoc {
         );
 
         String responseBody = resultActions.andReturn().getResponse().getContentAsString();
-        System.out.println("테스트 : "+responseBody);
+        System.out.println("테스트 : " + responseBody);
 
         resultActions.andExpect(jsonPath("$.success").value("true"));
         resultActions.andExpect(jsonPath("$.response.id").value(1));
@@ -195,7 +182,7 @@ public class UserControllerTest extends MyWithRestDoc {
         );
 
         String responseBody = resultActions.andReturn().getResponse().getContentAsString();
-        System.out.println("테스트 : "+responseBody);
+        System.out.println("테스트 : " + responseBody);
 
         resultActions.andExpect(jsonPath("$.success").value("true"));
         resultActions.andExpect(jsonPath("$.response.id").value(1));
@@ -216,28 +203,7 @@ public class UserControllerTest extends MyWithRestDoc {
 
         // console
         String responseBody = resultActions.andReturn().getResponse().getContentAsString();
-        System.out.println("테스트 : "+responseBody);
-
-        // verify
-        resultActions.andExpect(jsonPath("$.success").value("true"));
-        resultActions.andExpect(jsonPath("$.response.id").value(1));
-        resultActions.andExpect(jsonPath("$.response.username").value("ssar"));
-        resultActions.andExpect(jsonPath("$.response.imgUrl").value("/images/1.jpg"));
-        resultActions.andExpect(jsonPath("$.status").value(200));
-        resultActions.andExpect(jsonPath("$.errorMessage").isEmpty());
-        resultActions.andDo(MockMvcResultHandlers.print());
-        resultActions.andDo(document);
-    }
-
-    @Test
-    public void refresh_login_test() throws Exception {
-        ResultActions resultActions = mvc.perform(
-                post("/refresh/login").header("Authorization", accessToken).header("X-Refresh-Token", refreshToken)
-        );
-
-        // console
-        String responseBody = resultActions.andReturn().getResponse().getContentAsString();
-        System.out.println("테스트 : "+responseBody);
+        System.out.println("테스트 : " + responseBody);
 
         // verify
         resultActions.andExpect(jsonPath("$.success").value("true"));
@@ -258,7 +224,7 @@ public class UserControllerTest extends MyWithRestDoc {
 
         // console
         String responseBody = resultActions.andReturn().getResponse().getContentAsString();
-        System.out.println("테스트 : "+responseBody);
+        System.out.println("테스트 : " + responseBody);
 
         // verify
         resultActions.andExpect(jsonPath("$.success").value("true"));
@@ -279,7 +245,7 @@ public class UserControllerTest extends MyWithRestDoc {
 
         // console
         String responseBody = resultActions.andReturn().getResponse().getContentAsString();
-        System.out.println("테스트 : "+responseBody);
+        System.out.println("테스트 : " + responseBody);
 
         // verify
         resultActions.andExpect(jsonPath("$.success").value("true"));

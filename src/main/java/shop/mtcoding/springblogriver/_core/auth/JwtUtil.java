@@ -32,10 +32,6 @@ public class JwtUtil {
         return create(user, EXPIRATION_TIME);
     }
 
-    public static String createdRefreshToken(User user){
-        return create(user, EXPIRATION_REFRESH_TIME);
-    }
-
     public static User verify(String jwt)
             throws SignatureVerificationException, TokenExpiredException, JWTDecodeException {
         jwt = jwt.replace("Bearer ", "");

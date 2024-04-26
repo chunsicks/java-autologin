@@ -23,8 +23,8 @@ public class WebConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         WebMvcConfigurer.super.addResourceHandlers(registry);
 
-        // 1. 절대경로 file:///c:/upload/
-        // 2. 상대경로 file:./upload/
+        // 1. 절대경로 file:///c:/images/
+        // 2. 상대경로 file:./images/
         registry
                 .addResourceHandler("/images/**")
                 .addResourceLocations("file:" + filePath)

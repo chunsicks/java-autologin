@@ -5,7 +5,6 @@ import com.auth0.jwt.exceptions.SignatureVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import shop.mtcoding.springblogriver._core.auth.JwtEnum;
@@ -24,7 +23,6 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
-    private final RedisTemplate<String, String> redisTemplate;
 
     @Transactional
     public UserResponse.DTO 회원가입(UserRequest.JoinDTO requestDTO) {
@@ -54,66 +52,12 @@ public class UserService {
 
         // 3. jwt 생성
         String accessToken = JwtUtil.createdAccessToken(userPS);
-        String refreshToken = JwtUtil.createdRefreshToken(userPS);
 
         accessToken = "Bearer "+accessToken;
-        refreshToken = "Bearer "+refreshToken;
 
         System.out.println("accessToken : "+accessToken);
-        System.out.println("refreshToken : "+refreshToken);
-        redisTemplate.opsForValue().set(accessToken, refreshToken);
 
-        return new UserResponse.LoginDTO(accessToken, refreshToken, userPS);
-    }
-
-    // 엑세스토큰, 리플래시토큰을 돌려줘야 한다.
-    public UserResponse.LoginDTO  리플래시로그인(String requestAccessToken, String requestRefreshToken) {
-        Optional.ofNullable(requestAccessToken).orElseThrow(() -> new Exception401(JwtEnum.ACCESS_TOKEN_NOT_FOUND.name()));
-        Optional.ofNullable(requestRefreshToken).orElseThrow(() -> new Exception401(JwtEnum.REFRESH_TOKEN_NOT_FOUND.name()));
-        try {
-
-            // 1. 전송한 requestRefreshToken 이 유효한지 검증한다.
-            User user = JwtUtil.verify(requestRefreshToken);
-
-            // 2. 전송한 requestAccessToken이 레디스에 저장되었는지 확인한다.
-            String savedRefreshToken = redisTemplate.opsForValue().get(requestAccessToken);
-
-            System.out.println("requestAccessToken : "+requestAccessToken);
-            System.out.println("requestRefreshToken : "+requestRefreshToken);
-            System.out.println("savedRefreshToken : "+savedRefreshToken);
-
-            if(savedRefreshToken == null){
-                throw new Exception401(JwtEnum.ACCESS_TOKEN_DONT_SAVED_REDIS.name());
-            }
-
-            // 3. 전송한 requestRefreshToken과 저장된 savedRefreshToken이 동일한지 확인한다.
-            if(!requestRefreshToken.equals(savedRefreshToken)){
-                throw new Exception401(JwtEnum.REFRESH_TOKEN_NOT_MATCH_SAVED_REDIS.name());
-            }
-
-            // 4. savedRefreshToken 검사 완료
-            String newAccessToken = JwtUtil.createdAccessToken(user);
-            String newRefreshToken = JwtUtil.createdRefreshToken(user);
-            newAccessToken = "Bearer "+newAccessToken;
-            newRefreshToken = "Bearer "+newRefreshToken;
-
-            System.out.println("newAccessToken :"+newAccessToken);
-            System.out.println("newRefreshToken :"+newRefreshToken);
-
-            redisTemplate.opsForValue().set(newAccessToken, newRefreshToken);
-
-            String refreshTokenGet = redisTemplate.opsForValue().get(newAccessToken);
-            System.out.println("refreshTokenGet : "+refreshTokenGet);
-
-            return new UserResponse.LoginDTO(newAccessToken, newRefreshToken, user);
-        }catch (SignatureVerificationException | JWTDecodeException e1) {
-            throw new Exception401(JwtEnum.REFRESH_TOKEN_INVALID.name());
-        }catch (TokenExpiredException e2){
-            throw new Exception401(JwtEnum.REFRESH_TOKEN_TIMEOUT.name());
-        }catch (Exception e){
-            e.printStackTrace();
-            throw new Exception401(e.getMessage());
-        }
+        return new UserResponse.LoginDTO(accessToken, userPS);
     }
 
     // 토큰을 돌려줄 필요가 없다.

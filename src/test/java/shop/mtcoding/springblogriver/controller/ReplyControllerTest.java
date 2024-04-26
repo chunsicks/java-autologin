@@ -3,21 +3,16 @@ package shop.mtcoding.springblogriver.controller;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper;
 import shop.mtcoding.springblogriver._core.auth.JwtUtil;
 import shop.mtcoding.springblogriver._core.util.MyWithRestDoc;
-import shop.mtcoding.springblogriver.post.PostRequest;
 import shop.mtcoding.springblogriver.reply.ReplyRequest;
 import shop.mtcoding.springblogriver.user.User;
 
@@ -28,17 +23,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @Sql("classpath:db/teardown.sql")
 @AutoConfigureRestDocs(uriScheme = "http", uriHost = "localhost", uriPort = 8080)
-@ActiveProfiles("test")
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 public class ReplyControllerTest extends MyWithRestDoc{
 
-    @Autowired
-    private RedisTemplate<String, String> redisTemplate;
-
     private ObjectMapper om = new ObjectMapper();
     private String accessToken;
-    private String refreshToken;
 
     @BeforeEach
     public void setUp(){
@@ -53,12 +43,8 @@ public class ReplyControllerTest extends MyWithRestDoc{
                 .build();
 
         accessToken = JwtUtil.createdAccessToken(user);
-        refreshToken = JwtUtil.createdRefreshToken(user);
 
         accessToken = "Bearer "+accessToken;
-        refreshToken = "Bearer "+refreshToken;
-
-        redisTemplate.opsForValue().set(accessToken, refreshToken);
     }
 
     @Test

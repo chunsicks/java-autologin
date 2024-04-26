@@ -24,7 +24,7 @@ public class MyWithRestDoc {
     protected RestDocumentationResultHandler document;
 
     @BeforeEach
-    private void restDocSetting(WebApplicationContext webApplicationContext,
+    public void restDocSetting(WebApplicationContext webApplicationContext,
                        RestDocumentationContextProvider restDocumentation) {
 
         this.document = MockMvcRestDocumentation.document("{class-name}/{method-name}",

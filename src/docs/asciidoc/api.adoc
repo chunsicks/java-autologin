@@ -34,42 +34,35 @@ include::{snippets}/{user}/auto_login_test/http-request.adoc[]
 ===== Response Example
 include::{snippets}/{user}/auto_login_test/http-response.adoc[]
 
-=== 4. 리플래시 로그인
-===== Request Example
-include::{snippets}/{user}/refresh_login_test/http-request.adoc[]
-
-===== Response Example
-include::{snippets}/{user}/refresh_login_test/http-response.adoc[]
-
-=== 5. 회원정보
+=== 4. 회원정보
 ===== Request Example
 include::{snippets}/{user}/userinfo_test/http-request.adoc[]
 
 ===== Response Example
 include::{snippets}/{user}/userinfo_test/http-response.adoc[]
 
-=== 6. 회원패스워드 변경
+=== 5. 회원패스워드 변경
 ===== Request Example
 include::{snippets}/{user}/user_password_update_test/http-request.adoc[]
 
 ===== Response Example
 include::{snippets}/{user}/user_password_update_test/http-response.adoc[]
 
-=== 7. 회원프로필사진 변경
+=== 6. 회원프로필사진 변경
 ===== Request Example
 include::{snippets}/{user}/user_img_update_test/http-request.adoc[]
 
 ===== Response Example
 include::{snippets}/{user}/user_img_update_test/http-response.adoc[]
 
-=== 8. 회원목록 정보 더미보기
+=== 7. 회원목록 정보 더미보기
 ===== Request Example
 include::{snippets}/{user}/init_user_test/http-request.adoc[]
 
 ===== Response Example
 include::{snippets}/{user}/init_user_test/http-response.adoc[]
 
-=== 9. 스플래시 스크린 테스트
+=== 8. 스플래시 스크린 테스트
 ===== Request Example
 include::{snippets}/{user}/init_download_test/http-request.adoc[]
 

@@ -1,7 +1,5 @@
 package shop.mtcoding.springblogriver._core.util;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.util.Assert;
 import shop.mtcoding.springblogriver._core.error.exception.Exception400;
 
 public class AssertTest {
