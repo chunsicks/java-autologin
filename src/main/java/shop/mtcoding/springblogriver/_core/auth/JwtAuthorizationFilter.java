@@ -29,7 +29,8 @@ public class JwtAuthorizationFilter implements Filter {
 
         String jwt = request.getHeader("Authorization");
         if (jwt == null || jwt.isEmpty()) {
-            chain.doFilter(request, response);
+            //chain.doFilter(request, response);
+            onError(response, JwtEnum.ACCESS_TOKEN_INVALID);
         }else{
             try {
                 User sessionUser = JwtUtil.verify(jwt);

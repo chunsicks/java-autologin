@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import shop.mtcoding.springblogriver._core.auth.JwtEnum;
 import shop.mtcoding.springblogriver._core.auth.JwtUtil;
 import shop.mtcoding.springblogriver._core.auth.PasswordUtil;
+import shop.mtcoding.springblogriver._core.error.exception.Exception400;
 import shop.mtcoding.springblogriver._core.error.exception.Exception401;
 import shop.mtcoding.springblogriver._core.error.exception.Exception404;
 import shop.mtcoding.springblogriver._core.util.MyFileUtil;
@@ -26,6 +27,12 @@ public class UserService {
 
     @Transactional
     public UserResponse.DTO 회원가입(UserRequest.JoinDTO requestDTO) {
+
+        Optional<User> userOP = userRepository.findByUsername(requestDTO.getUsername());
+        if(userOP.isPresent()){
+            throw new Exception400("유저네임 중복");
+        }
+
         // 1. 비밀번호 암호화
         String encPassword = PasswordUtil.encode(requestDTO.getPassword());
         // 2. base64 -> file 저장
