@@ -5,9 +5,9 @@ truncate table post_tb;
 truncate table user_tb;
 SET REFERENTIAL_INTEGRITY TRUE;
 
-insert into user_tb(username, password, email, img_url, created_at, updated_at) values('ssar', '$2a$10$DDJOwWzVI3VE4jtDgc.OcOQymy1sbksVfA0uJ9tVF.p/WZiP1X3qy', 'ssar@nate.com', '/images/1.jpg', now(), now());
-insert into user_tb(username, password, email, img_url, created_at, updated_at) values('cos', '$2a$10$DDJOwWzVI3VE4jtDgc.OcOQymy1sbksVfA0uJ9tVF.p/WZiP1X3qy', 'cos@nate.com', '/images/1.jpg',now(), now());
-insert into user_tb(username, password, email, img_url, created_at, updated_at) values('love', '$2a$10$DDJOwWzVI3VE4jtDgc.OcOQymy1sbksVfA0uJ9tVF.p/WZiP1X3qy', 'love@nate.com', '/images/1.jpg',now(), now());
+insert into user_tb(username, password, email, img_url, created_at, updated_at) values('ssar', '$2a$10$DDJOwWzVI3VE4jtDgc.OcOQymy1sbksVfA0uJ9tVF.p/WZiP1X3qy', 'ssar@nate.com', '/images/1.png', now(), now());
+insert into user_tb(username, password, email, img_url, created_at, updated_at) values('cos', '$2a$10$DDJOwWzVI3VE4jtDgc.OcOQymy1sbksVfA0uJ9tVF.p/WZiP1X3qy', 'cos@nate.com', '/images/1.png',now(), now());
+insert into user_tb(username, password, email, img_url, created_at, updated_at) values('love', '$2a$10$DDJOwWzVI3VE4jtDgc.OcOQymy1sbksVfA0uJ9tVF.p/WZiP1X3qy', 'love@nate.com', '/images/1.png',now(), now());
 
 insert into post_tb(title, content, user_id, created_at, updated_at) values('title 1', 'content 1', 1, now(), now());
 insert into post_tb(title, content, user_id, created_at, updated_at) values('title 2', 'content 2', 1, now(), now());

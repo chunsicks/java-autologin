@@ -37,7 +37,7 @@ public class BookmarkControllerTest extends MyWithRestDoc {
                 .username("ssar")
                 .password("1234")
                 .email("ssar@nate.com")
-                .imgUrl("/images/1.jpg")
+                .imgUrl("/images/1.png")
                 .createdAt(LocalDateTime.now())
                 .updatedAt(LocalDateTime.now())
                 .build();

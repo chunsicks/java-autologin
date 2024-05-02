@@ -11,7 +11,7 @@ public class Base64UtilTest {
     //@Test
     public void mimeType_test() throws IOException {
         // given
-        Path filePath = Paths.get("./images/1.jpg");
+        Path filePath = Paths.get("./images/1.png");
         byte[] imgBytes = Files.readAllBytes(filePath);
         String imgBase64 = Base64.getEncoder().encodeToString(imgBytes);
         imgBase64 = "data:$mimeType;base64,$imgBase64".replace("$mimeType", "image/jpeg").replace("$imgBase64", imgBase64);
@@ -26,7 +26,7 @@ public class Base64UtilTest {
     // data:image/jpeg;base64,
     //@Test
     public void encode_test() throws IOException {
-        Path filePath = Paths.get("./images/1.jpg");
+        Path filePath = Paths.get("./images/1.png");
         byte[] imgBytes = Files.readAllBytes(filePath);
         String imgBase64 = Base64.getEncoder().encodeToString(imgBytes);
         String mimeType = "image/jpeg";
@@ -38,7 +38,7 @@ public class Base64UtilTest {
     public void decode_test(){
         try {
             // given - base64 encode with mime add
-            Path filePath = Paths.get("./images/1.jpg");
+            Path filePath = Paths.get("./images/1.png");
             String imgBase64 = Base64.getEncoder().encodeToString(Files.readAllBytes(filePath));
             imgBase64 = "data:$mimeType;base64,$imgBase64".replace("$mimeType", "image/jpeg").replace("$imgBase64", imgBase64);
             //System.out.println(imgBase64);

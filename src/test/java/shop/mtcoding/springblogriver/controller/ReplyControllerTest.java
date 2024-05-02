@@ -37,7 +37,7 @@ public class ReplyControllerTest extends MyWithRestDoc{
                 .username("ssar")
                 .password("1234")
                 .email("ssar@nate.com")
-                .imgUrl("/images/1.jpg")
+                .imgUrl("/images/1.png")
                 .createdAt(LocalDateTime.now())
                 .updatedAt(LocalDateTime.now())
                 .build();
@@ -71,7 +71,7 @@ public class ReplyControllerTest extends MyWithRestDoc{
         resultActions.andExpect(jsonPath("$.response.createdAt").exists());
         resultActions.andExpect(jsonPath("$.response.replyUser.id").value(1));
         resultActions.andExpect(jsonPath("$.response.replyUser.username").value("ssar"));
-        resultActions.andExpect(jsonPath("$.response.replyUser.imgUrl").value("/images/1.jpg"));
+        resultActions.andExpect(jsonPath("$.response.replyUser.imgUrl").value("/images/1.png"));
         resultActions.andExpect(jsonPath("$.status").value(200));
         resultActions.andExpect(jsonPath("$.errorMessage").isEmpty());
         resultActions.andDo(MockMvcResultHandlers.print());
@@ -123,7 +123,7 @@ public class ReplyControllerTest extends MyWithRestDoc{
         resultActions.andExpect(jsonPath("$.response.replies[0].createdAt").exists());
         resultActions.andExpect(jsonPath("$.response.replies[0].replyUser.id").value(3));
         resultActions.andExpect(jsonPath("$.response.replies[0].replyUser.username").value("love"));
-        resultActions.andExpect(jsonPath("$.response.replies[0].replyUser.imgUrl").value("/images/1.jpg"));
+        resultActions.andExpect(jsonPath("$.response.replies[0].replyUser.imgUrl").value("/images/1.png"));
         resultActions.andExpect(jsonPath("$.status").value(200));
         resultActions.andExpect(jsonPath("$.errorMessage").isEmpty());
         resultActions.andDo(MockMvcResultHandlers.print());

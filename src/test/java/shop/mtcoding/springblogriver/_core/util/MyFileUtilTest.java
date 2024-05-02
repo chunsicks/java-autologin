@@ -17,7 +17,7 @@ public class MyFileUtilTest {
     //@Test
     public void write_test() throws IOException {
         // given
-        Path filePath = Paths.get("./images/1.jpg");
+        Path filePath = Paths.get("./images/1.png");
         String imgBase64 = Base64.getEncoder().encodeToString(Files.readAllBytes(filePath));
         imgBase64 = "data:$mimeType;base64,$imgBase64".replace("$mimeType", "image/jpeg").replace("$imgBase64", imgBase64);
 

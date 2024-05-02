@@ -40,7 +40,7 @@ public class UserControllerTest extends MyWithRestDoc {
                 .username("ssar")
                 .password("1234")
                 .email("ssar@nate.com")
-                .imgUrl("/images/1.jpg")
+                .imgUrl("/images/1.png")
                 .createdAt(LocalDateTime.now())
                 .updatedAt(LocalDateTime.now())
                 .build();
@@ -109,7 +109,7 @@ public class UserControllerTest extends MyWithRestDoc {
         resultActions.andExpect(jsonPath("$.success").value("true"));
         resultActions.andExpect(jsonPath("$.response.id").value(1));
         resultActions.andExpect(jsonPath("$.response.username").value("ssar"));
-        resultActions.andExpect(jsonPath("$.response.imgUrl").value("/images/1.jpg"));
+        resultActions.andExpect(jsonPath("$.response.imgUrl").value("/images/1.png"));
         resultActions.andExpect(jsonPath("$.status").value(200));
         resultActions.andExpect(jsonPath("$.errorMessage").isEmpty());
         resultActions.andDo(MockMvcResultHandlers.print());
@@ -209,7 +209,7 @@ public class UserControllerTest extends MyWithRestDoc {
         resultActions.andExpect(jsonPath("$.success").value("true"));
         resultActions.andExpect(jsonPath("$.response.id").value(1));
         resultActions.andExpect(jsonPath("$.response.username").value("ssar"));
-        resultActions.andExpect(jsonPath("$.response.imgUrl").value("/images/1.jpg"));
+        resultActions.andExpect(jsonPath("$.response.imgUrl").value("/images/1.png"));
         resultActions.andExpect(jsonPath("$.status").value(200));
         resultActions.andExpect(jsonPath("$.errorMessage").isEmpty());
         resultActions.andDo(MockMvcResultHandlers.print());
@@ -230,7 +230,7 @@ public class UserControllerTest extends MyWithRestDoc {
         resultActions.andExpect(jsonPath("$.success").value("true"));
         resultActions.andExpect(jsonPath("$.response[0].id").value(3));
         resultActions.andExpect(jsonPath("$.response[0].username").value("love"));
-        resultActions.andExpect(jsonPath("$.response[0].imgUrl").value("/images/1.jpg"));
+        resultActions.andExpect(jsonPath("$.response[0].imgUrl").value("/images/1.png"));
         resultActions.andExpect(jsonPath("$.status").value(200));
         resultActions.andExpect(jsonPath("$.errorMessage").isEmpty());
         resultActions.andDo(MockMvcResultHandlers.print());

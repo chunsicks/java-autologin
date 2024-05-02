@@ -40,7 +40,7 @@ public class UserService {
         try{
             imgUrl = MyFileUtil.write(requestDTO.getImgBase64());
         }catch (Exception e){
-            imgUrl = "/images/1.jpg";
+            imgUrl = "/images/1.png";
         }
         // 3. file 경로 가져와서 유저정보 + 사진경로 DB 저장
         User userPS = userRepository.save(requestDTO.toEntity(encPassword, imgUrl));

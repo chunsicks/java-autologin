@@ -37,7 +37,7 @@ public class PostControllerTest extends MyWithRestDoc {
                 .username("ssar")
                 .password("1234")
                 .email("ssar@nate.com")
-                .imgUrl("/images/1.jpg")
+                .imgUrl("/images/1.png")
                 .createdAt(LocalDateTime.now())
                 .updatedAt(LocalDateTime.now())
                 .build();
@@ -72,7 +72,7 @@ public class PostControllerTest extends MyWithRestDoc {
         resultActions.andExpect(jsonPath("$.response.posts[0].bookmarkCount").value(0));
         resultActions.andExpect(jsonPath("$.response.posts[0].user.id").value(2));
         resultActions.andExpect(jsonPath("$.response.posts[0].user.username").value("cos"));
-        resultActions.andExpect(jsonPath("$.response.posts[0].user.imgUrl").value("/images/1.jpg"));
+        resultActions.andExpect(jsonPath("$.response.posts[0].user.imgUrl").value("/images/1.png"));
         resultActions.andExpect(jsonPath("$.status").value(200));
         resultActions.andExpect(jsonPath("$.errorMessage").isEmpty());
         resultActions.andDo(MockMvcResultHandlers.print());
@@ -104,7 +104,7 @@ public class PostControllerTest extends MyWithRestDoc {
         resultActions.andExpect(jsonPath("$.response.posts[0].bookmarkCount").value(0));
         resultActions.andExpect(jsonPath("$.response.posts[0].user.id").value(2));
         resultActions.andExpect(jsonPath("$.response.posts[0].user.username").value("cos"));
-        resultActions.andExpect(jsonPath("$.response.posts[0].user.imgUrl").value("/images/1.jpg"));
+        resultActions.andExpect(jsonPath("$.response.posts[0].user.imgUrl").value("/images/1.png"));
         resultActions.andExpect(jsonPath("$.status").value(200));
         resultActions.andExpect(jsonPath("$.errorMessage").isEmpty());
         resultActions.andDo(MockMvcResultHandlers.print());
@@ -140,7 +140,7 @@ public class PostControllerTest extends MyWithRestDoc {
         resultActions.andExpect(jsonPath("$.response.bookmarkCount").value(0));
         resultActions.andExpect(jsonPath("$.response.user.id").value(1));
         resultActions.andExpect(jsonPath("$.response.user.username").value("ssar"));
-        resultActions.andExpect(jsonPath("$.response.user.imgUrl").value("/images/1.jpg"));
+        resultActions.andExpect(jsonPath("$.response.user.imgUrl").value("/images/1.png"));
         resultActions.andExpect(jsonPath("$.status").value(200));
         resultActions.andExpect(jsonPath("$.errorMessage").isEmpty());
         resultActions.andDo(MockMvcResultHandlers.print());
@@ -169,13 +169,13 @@ public class PostControllerTest extends MyWithRestDoc {
         resultActions.andExpect(jsonPath("$.response.isBookmark").value(true));
         resultActions.andExpect(jsonPath("$.response.user.id").value(1));
         resultActions.andExpect(jsonPath("$.response.user.username").value("ssar"));
-        resultActions.andExpect(jsonPath("$.response.user.imgUrl").value("/images/1.jpg"));
+        resultActions.andExpect(jsonPath("$.response.user.imgUrl").value("/images/1.png"));
         resultActions.andExpect(jsonPath("$.response.replies[0].id").value(5));
         resultActions.andExpect(jsonPath("$.response.replies[0].comment").value("comment 5"));
         resultActions.andExpect(jsonPath("$.response.replies[0].createdAt").exists());
         resultActions.andExpect(jsonPath("$.response.replies[0].replyUser.id").value(3));
         resultActions.andExpect(jsonPath("$.response.replies[0].replyUser.username").value("love"));
-        resultActions.andExpect(jsonPath("$.response.replies[0].replyUser.imgUrl").value("/images/1.jpg"));
+        resultActions.andExpect(jsonPath("$.response.replies[0].replyUser.imgUrl").value("/images/1.png"));
         resultActions.andExpect(jsonPath("$.status").value(200));
         resultActions.andExpect(jsonPath("$.errorMessage").isEmpty());
         resultActions.andDo(MockMvcResultHandlers.print());
@@ -209,7 +209,7 @@ public class PostControllerTest extends MyWithRestDoc {
         resultActions.andExpect(jsonPath("$.response.bookmarkCount").value(1));
         resultActions.andExpect(jsonPath("$.response.user.id").value(1));
         resultActions.andExpect(jsonPath("$.response.user.username").value("ssar"));
-        resultActions.andExpect(jsonPath("$.response.user.imgUrl").value("/images/1.jpg"));
+        resultActions.andExpect(jsonPath("$.response.user.imgUrl").value("/images/1.png"));
         resultActions.andExpect(jsonPath("$.status").value(200));
         resultActions.andExpect(jsonPath("$.errorMessage").isEmpty());
         resultActions.andDo(MockMvcResultHandlers.print());
