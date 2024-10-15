@@ -22,6 +22,7 @@ import java.util.Optional;
 public class UserController {
     private final UserService userService;
 
+    //비동기 연습용 3초 지연 로딩!
     @GetMapping("/init/download")
     public ResponseEntity<?> initDownload() {
         try {
